@@ -241,26 +241,20 @@ class HelloWorld
         
         Console.WriteLine("Afisati in ordine inversa cifrele unui numar n.");
         
-        //Metoda 1
-        /*
-        string n = Console.ReadLine();
-        for (int i = n.Length - 1; i >= 0; i--)
-        {
-            Console.Write(n[i]);
-        }
-        */
         
-        //Metoda 2
-        int numar = Convert.ToInt32(Console.ReadLine()); //123
+        int numar = Convert.ToInt32(Console.ReadLine());
+        int semn = 1;
+        if (numar < 0) semn = -1;
+        numar = Math.Abs(numar);
+        
         int numarIntors = 0;
-
         while (numar > 0)
         {
             numarIntors = numarIntors * 10 + numar % 10;
             numar /= 10;
         }
 
-        Console.WriteLine(numarIntors);
+        Console.WriteLine(semn * numarIntors);
     }
 
     static public void P12()
@@ -273,7 +267,7 @@ class HelloWorld
         int divisibleNumbersCount = 0;
 
         for (int i = a; i <= b; i++)
-            if (n % i == 0)
+            if (i % n == 0)
                 divisibleNumbersCount++;
 
         Console.WriteLine("In intervalul [a, b] sunt: " + divisibleNumbersCount + " divizori ai lui n");
@@ -313,6 +307,8 @@ class HelloWorld
             Console.WriteLine("Numarul nu este palindrom");    
         */
 
+        
+        //Metoda 2
         int n = Convert.ToInt32(Console.ReadLine());
         int nCopy = n;
         int nIntors = 0;
@@ -455,7 +451,7 @@ class HelloWorld
 
         //Generam numere prime cu Ciurul lui Eratestone
         for (int i = 2; i * i < prime.Length; i++)
-            if (prime[i] == true)
+            if (prime[i])
                 for (int j = i * 2; j < prime.Length; j += i)
                     prime[j] = false;
             
@@ -464,7 +460,7 @@ class HelloWorld
         bool trebuiePusSemnulInmultirii = false;
         for (int i = 2; i < prime.Length; i++)
         {
-            if (prime[i] == true && n > 0 && n % i == 0)
+            if (prime[i] && n > 0 && n % i == 0)
             {
                 int putereaFactoruluiPrim = 0;
                 while (n % i == 0)
